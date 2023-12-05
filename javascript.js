@@ -1,5 +1,5 @@
 // define number of squares per side
-let gridWidth = 20;
+let gridWidth = 16;
 
 // calculate total number of squares
 let numberOfSquares = gridWidth * gridWidth;

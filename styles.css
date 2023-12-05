@@ -1,16 +1,23 @@
+:root {
+    --gap: 5px;
+}
+
 .square {
     box-sizing: border-box;
     border-style: solid;
     border-width: thin;
-    flex: 1 1 calc(100% / var(--number-squares)); 
+    flex: 1 1 calc((100% / var(--number-squares)) - ((var(--gap) * (var(--number-squares) - 1)) / var(--number-squares))); 
+    /* width of a single square is calculated by; 
+    100% of overall width divided by number of squares -> this gives the width of a single square to occupy the whole viewport exactly;
+    but if we add a gap in between the squares (for aesthetic purposes), the squares don't fit anymore, so there size needs to be reduced by
+    the overall width of all gaps divided by the number of squares */
     aspect-ratio: 1 / 1;
-    /* --> 16 is number of squares per side */
 }
 
 .container {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    /* gap: 5px; */ 
+    gap: var(--gap); 
     /* gap destroys the calculation for flexbase */
 }
