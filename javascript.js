@@ -5,13 +5,15 @@ let gridWidth = 15;
 let numberOfSquares = gridWidth * gridWidth;
 
 // give number of squares per side to CSS stylesheet
-let style = document.createElement('style');
-style.innerHTML = `
-:root {
-    --number-squares: ${gridWidth};
+function updateCSS (gridWidth) {
+    let style = document.createElement('style');
+    style.innerHTML = `
+    :root {
+        --number-squares: ${gridWidth};
+    }
+    `;
+    document.head.appendChild(style);
 }
-`;
-document.head.appendChild(style);
 
 // create container node for the squares
 const container = document.querySelector('.container');
@@ -41,11 +43,9 @@ function removeGrid(previousNumberOfSquares) {
     let iterations = previousNumberOfSquares*previousNumberOfSquares;
     for (i=0; i < iterations; i++) {
         let div = 'div#s' + i;
-        console.log(div);
         div = document.querySelector(div);
         container.removeChild(div);
     }
-    console.log(container);
 }
 
 // add button for user input for grid size
@@ -55,9 +55,11 @@ button.addEventListener('click', () => {
     gridWidth = prompt('How many squares wide should the grid be?', '15');
     numberOfSquares = gridWidth*gridWidth;
     removeGrid(previousNumberOfSquares);
+    updateCSS(gridWidth);
     createGrid(numberOfSquares);
     createHover();
 })
 
+updateCSS(gridWidth);
 createGrid(numberOfSquares);
 createHover();
