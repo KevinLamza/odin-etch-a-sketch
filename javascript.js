@@ -17,17 +17,47 @@ document.head.appendChild(style);
 const container = document.querySelector('.container');
 
 // create numberOfSquares squares with unique ids
-for (i=0; i < numberOfSquares; i++) {
-    let square = document.createElement('div');
-    square.id = 's' + i;
-    square.className = 'square';
-    container.appendChild(square);
+function createGrid(numberOfSquares) {
+    for (i=0; i < numberOfSquares; i++) {
+        let square = document.createElement('div');
+        square.id = 's' + i;
+        square.className = 'square';
+        container.appendChild(square);
+    }
 }
 
 // add hover effect for every square
-const squares = document.querySelectorAll('.square');
-squares.forEach((square) => {
-    square.addEventListener('mouseover', () => {
-        square.style.cssText = "background-color: yellow;";
+function createHover() {
+    const squares = document.querySelectorAll('.square');
+    squares.forEach((square) => {
+        square.addEventListener('mouseover', () => {
+            square.style.cssText = "background-color: yellow;";
+        })
     })
+}
+
+// remove grid
+function removeGrid(previousNumberOfSquares) {
+    let iterations = previousNumberOfSquares*previousNumberOfSquares;
+    for (i=0; i < iterations; i++) {
+        let div = 'div#s' + i;
+        console.log(div);
+        div = document.querySelector(div);
+        container.removeChild(div);
+    }
+    console.log(container);
+}
+
+// add button for user input for grid size
+const button = document.querySelector('#input');
+button.addEventListener('click', () => {
+    previousNumberOfSquares = gridWidth;
+    gridWidth = prompt('How many squares wide should the grid be?', '15');
+    numberOfSquares = gridWidth*gridWidth;
+    removeGrid(previousNumberOfSquares);
+    createGrid(numberOfSquares);
+    createHover();
 })
+
+createGrid(numberOfSquares);
+createHover();
