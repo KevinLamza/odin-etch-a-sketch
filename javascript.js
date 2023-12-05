@@ -56,7 +56,7 @@ button.addEventListener('click', () => {
     gridWidth = prompt('How many squares wide should the grid be? It needs to be less than 100!', '15');
     // alert(!Number.isInteger(gridWidth));
     while (keepGoing) {
-    if (Number(gridWidth) < 0 || Number(gridWidth) > 100) {
+    if (isNaN(gridWidth) || !Number.isInteger(Number(gridWidth)) || Number(gridWidth) < 0 || Number(gridWidth) > 100) {
         alert('Only positive Integers smaller than 101 are allowed!');
         gridWidth = prompt('How many squares wide should the grid be? It needs to be less than 100!', '15');
     } else {
