@@ -52,7 +52,17 @@ function removeGrid(previousNumberOfSquares) {
 const button = document.querySelector('#input');
 button.addEventListener('click', () => {
     previousNumberOfSquares = gridWidth;
-    gridWidth = prompt('How many squares wide should the grid be?', '15');
+    let keepGoing = 1;
+    gridWidth = prompt('How many squares wide should the grid be? It needs to be less than 100!', '15');
+    // alert(!Number.isInteger(gridWidth));
+    while (keepGoing) {
+    if (Number(gridWidth) < 0 || Number(gridWidth) > 100) {
+        alert('Only positive Integers smaller than 101 are allowed!');
+        gridWidth = prompt('How many squares wide should the grid be? It needs to be less than 100!', '15');
+    } else {
+        keepGoing = 0;
+    }
+    } 
     numberOfSquares = gridWidth*gridWidth;
     removeGrid(previousNumberOfSquares);
     updateCSS(gridWidth);
