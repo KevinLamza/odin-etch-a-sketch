@@ -4,6 +4,9 @@ let gridWidth = 15;
 // calculate total number of squares
 let numberOfSquares = gridWidth * gridWidth;
 
+// contains to amount of hovers per square
+hoverCounter = [];
+
 // give number of squares per side to CSS stylesheet
 function updateCSS (gridWidth) {
     let style = document.createElement('style');
@@ -24,6 +27,7 @@ function createGrid(numberOfSquares) {
         let square = document.createElement('div');
         square.id = 's' + i;
         square.className = 'square';
+        hoverCounter[i] = 0;
         container.appendChild(square);
     }
 }
@@ -33,6 +37,9 @@ function createHover() {
     const squares = document.querySelectorAll('.square');
     squares.forEach((square) => {
         square.addEventListener('mouseover', () => {
+            let counter = Number(square.id.substring(1));
+            ++hoverCounter[counter];
+            console.log(hoverCounter[counter]);
             let randR = Math.floor(Math.random() * 255) + 1;
             let randG = Math.floor(Math.random() * 255) + 1;
             let randB = Math.floor(Math.random() * 255) + 1;
@@ -67,6 +74,7 @@ button.addEventListener('click', () => {
     }
     } 
     numberOfSquares = gridWidth*gridWidth;
+    hoverCounter = [];
     removeGrid(previousNumberOfSquares);
     updateCSS(gridWidth);
     createGrid(numberOfSquares);
