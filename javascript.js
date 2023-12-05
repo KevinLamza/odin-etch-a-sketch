@@ -1,5 +1,5 @@
 // define number of squares per side
-let gridWidth = 16;
+let gridWidth = 15;
 
 // calculate total number of squares
 let numberOfSquares = gridWidth * gridWidth;
@@ -23,3 +23,11 @@ for (i=0; i < numberOfSquares; i++) {
     square.className = 'square';
     container.appendChild(square);
 }
+
+// add hover effect for every square
+const squares = document.querySelectorAll('.square');
+squares.forEach((square) => {
+    square.addEventListener('mouseover', () => {
+        square.style.cssText = "background-color: yellow;";
+    })
+})

@@ -19,5 +19,8 @@
     display: flex;
     flex-wrap: wrap;
     gap: var(--gap); 
-    /* gap destroys the calculation for flexbase */
+}
+
+#input {
+    margin-bottom: 5px;
 }
