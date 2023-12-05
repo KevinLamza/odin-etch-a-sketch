@@ -1,14 +1,14 @@
 .square {
-    /* width: 50px;
-    height: 50px; */
-    /* margin: 1px; */
     box-sizing: border-box;
     border-style: solid;
     border-width: thin;
-    flex: 1 1 calc(100% / 16);
+    flex: 1 1 calc(100% / var(--number-squares)); 
+    aspect-ratio: 1 / 1;
+    /* --> 16 is number of squares per side */
 }
 
 .container {
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     /* gap: 5px; */ 
